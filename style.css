@@ -1,0 +1,885 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700&display=swap');
+
+:root {
+  /* Warna solid dari palet */
+  --green-dark: #4C5C2D;
+  --green-light: #6A7E3F;
+  --cream: #FFEDFA;
+  --pink: #E195AB;
+  --rose: #DE3163;
+  --white: #FFFFFF;
+  --black: #1A1A1A;
+  --gray: #8A8A8A;
+  --card-r: 24px;
+}
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body {
+  background: var(--cream);
+  color: var(--black);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Full screen wrapper */
+.wrapper {
+  min-height: 100vh;
+  max-width: 100%;
+  margin: 0;
+  padding: 32px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 20px;
+  }
+}
+
+/* Header Elegan */
+header {
+  padding: 16px 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-bottom: 3px solid rgba(225,149,171,0.45);
+  padding-bottom: 20px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--green-dark);
+  letter-spacing: -0.3px;
+}
+
+.logo span {
+  font-family: 'Poppins', sans-serif;
+  color: var(--rose);
+  font-weight: 700;
+  font-size: 22px;
+  display: block;
+  margin-top: 0px;
+  letter-spacing: 0.5px;
+}
+
+.api-badge {
+  background: transparent;
+  border: 1px solid var(--pink);
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-size: 12px;
+  color: var(--rose);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.api-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green-light);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Main Grid */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Panel Katalog Elegan */
+.panel {
+  background: var(--white);
+  border-radius: var(--card-r);
+  padding: 28px;
+  border: 1px solid rgba(225,149,171,0.3);
+  transition: all 0.3s ease;
+}
+
+.panel-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-title .count {
+  background: var(--green-light);
+  color: var(--white);
+  padding: 2px 10px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Presets Elegan */
+.presets-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.preset-btn {
+  background: transparent;
+  border: 1px solid var(--pink);
+  border-radius: 40px;
+  padding: 8px 18px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--green-dark);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.preset-btn:hover {
+  background: var(--green-light);
+  border-color: var(--green-light);
+  color: var(--white);
+}
+
+/* Search & Filter Elegan */
+.search-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.search-wrap {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+}
+
+.search-wrap::before {
+  content: '🔍';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+input[type="text"] {
+  width: 100%;
+  background: var(--cream);
+  border: 1px solid rgba(225,149,171,0.4);
+  border-radius: 12px;
+  padding: 12px 16px 12px 44px;
+  color: var(--black);
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+input[type="text"]:focus {
+  border-color: var(--green-light);
+  background: var(--white);
+}
+
+select {
+  background: var(--cream);
+  border: 1px solid rgba(225,149,171,0.4);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--black);
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+select:focus {
+  border-color: var(--green-light);
+}
+
+/* Fruit Grid Elegan */
+.fruit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 16px;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.fruit-grid::-webkit-scrollbar {
+  width: 4px;
+}
+
+.fruit-grid::-webkit-scrollbar-track {
+  background: var(--cream);
+  border-radius: 4px;
+}
+
+.fruit-grid::-webkit-scrollbar-thumb {
+  background: var(--pink);
+  border-radius: 4px;
+}
+
+.fruit-card {
+  background: var(--white);
+  border: 1px solid rgba(225,149,171,0.2);
+  border-radius: 20px;
+  padding: 20px 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.fruit-card:hover {
+  border-color: var(--green-light);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(76,92,45,0.08);
+}
+
+.fruit-card.adding {
+  animation: gentlePop 0.35s ease;
+}
+
+@keyframes gentlePop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); border-color: var(--rose); background: rgba(225,149,171,0.05); }
+  100% { transform: scale(1); }
+}
+
+.fruit-emoji {
+  font-size: 44px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.fruit-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--black);
+  font-family: 'Poppins', sans-serif;
+}
+
+.fruit-family {
+  font-size: 10px;
+  color: var(--gray);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fruit-mini-stats {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.mini-pill {
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 30px;
+  background: var(--cream);
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.mini-pill.cal {
+  background: rgba(222,49,99,0.1);
+  color: var(--rose);
+}
+
+.add-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--rose);
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.25s ease;
+  transform: scale(0.8);
+}
+
+.fruit-card:hover .add-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.add-btn:hover {
+  background: var(--green-light);
+}
+
+/* Blender Panel Elegan */
+.blender-panel {
+  position: sticky;
+  top: 32px;
+}
+
+.blender-visual {
+  background: var(--white);
+  border-radius: var(--card-r);
+  padding: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid rgba(225,149,171,0.2);
+}
+
+.blender-cup {
+  width: 110px;
+  height: 140px;
+  margin: 0 auto 20px;
+  position: relative;
+}
+
+.blender-cup svg {
+  width: 100%;
+  height: 100%;
+}
+
+.liquid {
+  transition: d 0.5s ease, fill 0.6s ease;
+}
+
+.blender-cup.blending .liquid {
+  animation: gentleShake 0.15s ease infinite;
+}
+
+@keyframes gentleShake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+.blend-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--green-dark);
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  color: var(--white);
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.25s ease;
+  margin-bottom: 12px;
+}
+
+.blend-btn:hover {
+  background: var(--green-light);
+}
+
+.blend-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.clear-btn {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid var(--pink);
+  border-radius: 40px;
+  cursor: pointer;
+  color: var(--rose);
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.clear-btn:hover {
+  border-color: var(--rose);
+  background: rgba(222,49,99,0.05);
+}
+
+/* Ingredients Panel Elegan */
+.ingredients-panel {
+  background: var(--white);
+  border: 1px solid rgba(225,149,171,0.2);
+  border-radius: var(--card-r);
+  padding: 20px;
+  margin-bottom: 20px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.ingredients-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.ingredients-panel::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+.ingredients-panel::-webkit-scrollbar-thumb {
+  background: var(--pink);
+  border-radius: 4px;
+}
+
+.empty-blender {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--gray);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.empty-blender .icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+.ingredient-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(225,149,171,0.15);
+  animation: fadeSlide 0.3s ease;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.ingredient-row:last-child {
+  border-bottom: none;
+}
+
+.ing-emoji {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.ing-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.ing-qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--cream);
+  border: 1px solid rgba(225,149,171,0.3);
+  color: var(--green-dark);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.qty-btn:hover {
+  background: var(--green-light);
+  color: white;
+  border-color: var(--green-light);
+}
+
+.qty-num {
+  font-size: 13px;
+  min-width: 24px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.remove-ing {
+  background: none;
+  border: none;
+  color: var(--pink);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.remove-ing:hover {
+  color: var(--rose);
+}
+
+/* Nutrition Card Elegan */
+.nutrition-card {
+  background: var(--white);
+  border: 1px solid rgba(225,149,171,0.2);
+  border-radius: var(--card-r);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.nutri-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(225,149,171,0.15);
+}
+
+.nutri-row:last-child {
+  border-bottom: none;
+}
+
+.nutri-label {
+  font-size: 12px;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.nutri-label .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.nutri-val {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.nutri-bar-wrap {
+  height: 4px;
+  background: var(--cream);
+  border-radius: 4px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.nutri-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Warnings Elegan */
+.warning-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.badge {
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  animation: fadeUp 0.3s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.badge-icon {
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.badge.warn {
+  background: rgba(225,149,171,0.1);
+  border-left: 3px solid var(--pink);
+  color: var(--rose);
+}
+
+.badge.danger {
+  background: rgba(222,49,99,0.08);
+  border-left: 3px solid var(--rose);
+  color: var(--rose);
+}
+
+.badge.success {
+  background: rgba(106,126,63,0.08);
+  border-left: 3px solid var(--green-light);
+  color: var(--green-dark);
+}
+
+.badge.info {
+  background: rgba(76,92,45,0.06);
+  border-left: 3px solid var(--green-dark);
+  color: var(--green-dark);
+}
+
+/* Score Ring Elegan */
+.score-ring-wrap {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.score-ring {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.score-ring svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.score-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+.score-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray);
+  margin-top: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal {
+  background: var(--white);
+  border-radius: 28px;
+  padding: 32px;
+  width: 90%;
+  max-width: 440px;
+  animation: modalFade 0.3s cubic-bezier(0.34,1.2,0.64,1);
+  border: 1px solid rgba(225,149,171,0.3);
+}
+
+@keyframes modalFade {
+  from { opacity: 0; transform: scale(0.96) translateY(16px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.modal-emoji {
+  font-size: 56px;
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+.modal-family {
+  color: var(--gray);
+  font-size: 11px;
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+}
+
+.modal-close {
+  margin-left: auto;
+  background: var(--cream);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--gray);
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: var(--rose);
+  color: white;
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.modal-stat {
+  background: var(--cream);
+  border-radius: 20px;
+  padding: 16px;
+  text-align: center;
+}
+
+.modal-stat .val {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+}
+
+.modal-stat .lbl {
+  font-size: 10px;
+  color: var(--gray);
+  margin-top: 6px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.modal-stat.cal .val { color: var(--rose); }
+.modal-stat.sugar .val { color: var(--pink); }
+.modal-stat.carb .val { color: var(--green-light); }
+.modal-stat.fat .val { color: var(--green-dark); }
+
+.modal-add-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--green-dark);
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  color: var(--white);
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+
+.modal-add-btn:hover {
+  background: var(--green-light);
+}
+
+/* Loading Elegan */
+.state-msg {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--gray);
+  font-size: 13px;
+}
+
+.state-msg .spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--cream);
+  border-top-color: var(--green-light);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.retry-btn {
+  margin-top: 16px;
+  padding: 10px 28px;
+  background: transparent;
+  border: 1px solid var(--rose);
+  color: var(--rose);
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.retry-btn:hover {
+  background: rgba(222,49,99,0.08);
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--gray);
+  font-size: 13px;
+}

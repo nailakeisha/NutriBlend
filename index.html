@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutriBlend — Virtual Smoothie Blender</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+  <header>
+    <div class="logo">
+      NutriBlend
+      <span>Virtual Smoothie Nutrition Calculator</span>
+    </div>
+    <div class="api-badge">Live: Fruityvice API</div>
+  </header>
+
+  <div class="main-grid">
+
+    <div class="panel">
+      <div class="panel-title">
+        Katalog Buah
+        <span class="count" id="fruit-count">–</span>
+      </div>
+
+      <div class="panel-title" style="margin-bottom:10px;">
+        Preset Smoothie
+      </div>
+      <div class="presets-row" id="presets-row"></div>
+
+      <div class="search-row">
+        <div class="search-wrap">
+          <input type="text" id="search" placeholder="Cari buah...">
+        </div>
+        <select id="filter-family">
+          <option value="">Semua Family</option>
+        </select>
+        <select id="sort-by">
+          <option value="name">A–Z</option>
+          <option value="calories">Kalori ↑</option>
+          <option value="sugar">Gula ↑</option>
+        </select>
+      </div>
+
+      <div class="fruit-grid" id="fruit-grid">
+        <div class="state-msg"><div class="spinner"></div>Memuat data dari API...</div>
+      </div>
+    </div>
+
+    <div class="blender-panel">
+
+      <div class="blender-visual">
+        <div class="blender-cup" id="blender-cup">
+          <svg viewBox="0 0 110 140" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <clipPath id="cup-clip">
+                <polygon points="15,10 95,10 82,130 28,130"/>
+              </clipPath>
+            </defs>
+            <polygon points="15,10 95,10 82,130 28,130"
+              fill="none" stroke="#E0E0E0" stroke-width="2"/>
+            <polygon id="liquid-shape" points="15,130 95,130 82,130 28,130"
+              fill="#4CAF50" class="liquid" clip-path="url(#cup-clip)"/>
+            <g id="bubbles" clip-path="url(#cup-clip)" opacity="0.4">
+              <circle cx="35" cy="115" r="3" fill="white"/>
+              <circle cx="60" cy="108" r="2" fill="white"/>
+              <circle cx="75" cy="118" r="4" fill="white"/>
+            </g>
+            <line x1="22" y1="18" x2="29" y2="124" stroke="#E0E0E0" stroke-width="6" stroke-linecap="round" opacity="0.3"/>
+            <rect x="8" y="6" width="94" height="8" rx="4" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1.5"/>
+            <rect id="straw" x="68" y="-10" width="5" height="90" rx="2.5" fill="#4CAF50" opacity="0"/>
+            <rect x="22" y="128" width="66" height="8" rx="4" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <button class="blend-btn" id="blend-btn" disabled onclick="blendAnimation()">BLEND IT! 🌀</button>
+        <button class="clear-btn" id="clear-btn" onclick="clearBlender()">Kosongkan Blender</button>
+      </div>
+
+      <div class="panel-title" style="padding:0 4px;margin-bottom:10px;">
+        Isi Blender
+        <span class="count" id="ing-count">0</span>
+      </div>
+      <div class="ingredients-panel" id="ingredients-panel">
+        <div class="empty-blender">
+          <span class="icon">🥤</span>
+          Belum ada buah. Pilih dari katalog!
+        </div>
+      </div>
+
+      <div class="panel-title" style="padding:0 4px;margin-bottom:10px;">
+        Total Nutrisi
+        <span style="font-size:10px;color:#757575;font-weight:400;text-transform:none">(per sajian)</span>
+      </div>
+      <div class="nutrition-card">
+        <div class="nutri-row">
+          <div>
+            <div class="nutri-label"><span class="dot" style="background:#F44336"></span>Kalori</div>
+            <div class="nutri-bar-wrap"><div class="nutri-bar" id="bar-cal" style="width:0%;background:#F44336"></div></div>
+          </div>
+          <div class="nutri-val" id="val-cal">0 kcal</div>
+        </div>
+        <div class="nutri-row">
+          <div>
+            <div class="nutri-label"><span class="dot" style="background:#FF9800"></span>Gula</div>
+            <div class="nutri-bar-wrap"><div class="nutri-bar" id="bar-sugar" style="width:0%;background:#FF9800"></div></div>
+          </div>
+          <div class="nutri-val" id="val-sugar">0g</div>
+        </div>
+        <div class="nutri-row">
+          <div>
+            <div class="nutri-label"><span class="dot" style="background:#4CAF50"></span>Karbohidrat</div>
+            <div class="nutri-bar-wrap"><div class="nutri-bar" id="bar-carb" style="width:0%;background:#4CAF50"></div></div>
+          </div>
+          <div class="nutri-val" id="val-carb">0g</div>
+        </div>
+        <div class="nutri-row">
+          <div>
+            <div class="nutri-label"><span class="dot" style="background:#2196F3"></span>Protein</div>
+            <div class="nutri-bar-wrap"><div class="nutri-bar" id="bar-protein" style="width:0%;background:#2196F3"></div></div>
+          </div>
+          <div class="nutri-val" id="val-protein">0g</div>
+        </div>
+        <div class="nutri-row">
+          <div>
+            <div class="nutri-label"><span class="dot" style="background:#9E9E9E"></span>Lemak</div>
+            <div class="nutri-bar-wrap"><div class="nutri-bar" id="bar-fat" style="width:0%;background:#9E9E9E"></div></div>
+          </div>
+          <div class="nutri-val" id="val-fat">0g</div>
+        </div>
+      </div>
+
+      <div class="warning-area" id="warning-area"></div>
+
+      <div id="score-wrap" style="display:none" class="nutrition-card">
+        <div class="score-ring-wrap">
+          <div class="score-ring">
+            <svg viewBox="0 0 80 80" width="80" height="80">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#E0E0E0" stroke-width="6"/>
+              <circle id="score-arc" cx="40" cy="40" r="32" fill="none"
+                stroke="#4CAF50" stroke-width="6"
+                stroke-dasharray="201" stroke-dashoffset="201" stroke-linecap="round"
+                style="transition:stroke-dashoffset 0.8s cubic-bezier(0.4,0,0.2,1),stroke 0.5s"/>
+            </svg>
+            <div class="score-num" id="score-num">–</div>
+          </div>
+          <div class="score-label" id="score-label">Health Score</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-emoji" id="m-emoji"></div>
+      <div>
+        <div class="modal-title" id="m-name"></div>
+        <div class="modal-family" id="m-family"></div>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-grid">
+      <div class="modal-stat cal">  <div class="val" id="m-cal"></div>  <div class="lbl">Kalori (kcal)</div></div>
+      <div class="modal-stat sugar"><div class="val" id="m-sugar"></div><div class="lbl">Gula (g)</div></div>
+      <div class="modal-stat carb"> <div class="val" id="m-carb"></div> <div class="lbl">Karbohidrat (g)</div></div>
+      <div class="modal-stat fat">  <div class="val" id="m-fat"></div>  <div class="lbl">Lemak (g)</div></div>
+    </div>
+    <button class="modal-add-btn" id="m-add-btn">+ Tambah ke Blender</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
